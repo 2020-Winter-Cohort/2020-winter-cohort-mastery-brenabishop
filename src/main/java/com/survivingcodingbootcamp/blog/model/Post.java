@@ -1,6 +1,8 @@
 package com.survivingcodingbootcamp.blog.model;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -12,14 +14,17 @@ public class Post {
     private Topic topic;
     @Lob
     private String content;
+    @ManyToMany
+    private Collection<Hashtag> hashtag;
 
     protected Post() {
     }
 
-    public Post(String title, Topic topic, String content) {
+    public Post(String title, Topic topic, String content, Hashtag...hashtag) {
         this.title = title;
         this.topic = topic;
         this.content = content;
+        this.hashtag = List.of(hashtag);
     }
 
     public Long getId() {
