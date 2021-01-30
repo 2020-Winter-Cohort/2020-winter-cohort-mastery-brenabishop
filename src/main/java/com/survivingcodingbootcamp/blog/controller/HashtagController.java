@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.websocket.server.PathParam;
+import java.util.HashSet;
 
 @Controller
 public class HashtagController {
@@ -39,26 +40,42 @@ public class HashtagController {
         Long newId = Long.parseLong(postId);
         Iterable<Hashtag> hashtags = hashtagStorage.retrieveAllHashtags();
         Hashtag addedHashtag = null;
+        Hashtag addedToAllHashtag = null;
 
         //iterate through existing hashtag, check if passed in name already exist
         //if not addedTag will be null and new hashtag added with post attached
         //if so, pull in existing tag and add another post
-        for(Hashtag i: hashtags){
+        for(Hashtag i: postStorage.retrievePostById(newId).getHashtag()){
             if(i.getName().equals(name)) {
                 addedHashtag = i;
-
             }
         }
-        if(addedHashtag == null && !name.equals("")) {
+
+        for(Hashtag i: hashtags){
+            if(i.getName().equals(name)) {
+                addedToAllHashtag = i;
+            }
+        }
+        //check if hashtag already exist, if not add to hashtag page
+
+        if(addedHashtag == null && addedToAllHashtag == null && !name.equals("")) {
+
             addedHashtag = new Hashtag(name, postStorage.retrievePostById(newId));
             hashtagStorage.save(addedHashtag);
+        } else if(addedToAllHashtag != null) {
+           hashtagStorage.addPost(addedToAllHashtag.getId(), postStorage.retrievePostById(newId));
         }
-        /*Hashtag addedHashtag = new Hashtag(name, postStorage.retrievePostById(newId));*/
 
+       /* if(addedHashtag == null && !name.equals("")) {
+            if(addedToAllHashtag == null) {
+                //add hashtag to allHashtags, and to posthashtag
+                addedHashtag = new Hashtag(name, postStorage.retrievePostById(newId));
+                hashtagStorage.save(addedHashtag);
+            }else {
+                addedToAllHashtag.addPost(postStorage.retrievePostById(newId));
+            }
+        }*/
 
-
-
-        //check if hashtag already exist, if not add to hashtag page
         return "redirect:/posts/" + newId;
     }
 

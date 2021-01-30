@@ -9,4 +9,6 @@ public interface PostStorage {
     Post retrievePostById(long l);
 
     void save(Post postToAdd);
+
+    void addHashtag(Long id, Hashtag hashtag);
 }

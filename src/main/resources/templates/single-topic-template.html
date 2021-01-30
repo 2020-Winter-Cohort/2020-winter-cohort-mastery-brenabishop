@@ -31,6 +31,21 @@
                 </div>
             </nav>
         </section>
+        <br>
+        <section class="add-hashtag">
+            <form action="/topics/addedPost" method="POST">
+                <input type="hidden" id="topicID" th:value="${topic.id}" name="topicID">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+                <label for="author">Your Name</label>
+                <input type="text" id="author" name="author">
+                <label for="content">Content</label>
+                <textarea id="content" name="content"></textarea>
+                <!--<label for="hashtag">Hashtag(s)</label>
+                <input type="text" id="hashtag" name="hashtag">-->
+                <button type="submit" value="Add">Add post</button>
+            </form>
+        </section>
     </main>
 </div>
 </body>

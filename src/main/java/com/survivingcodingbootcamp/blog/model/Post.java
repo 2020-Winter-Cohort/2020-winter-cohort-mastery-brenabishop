@@ -47,6 +47,10 @@ public class Post {
         return content;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
     public Collection<Hashtag> getHashtag() {
         return hashtag;
     }
@@ -56,9 +60,6 @@ public class Post {
         this.hashtag.add(hashtag);
     }
 
-    public String getAuthor() {
-        return author;
-    }
 
     @Override
     public String toString() {
