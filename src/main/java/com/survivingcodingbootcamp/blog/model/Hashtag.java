@@ -1,10 +1,13 @@
 package com.survivingcodingbootcamp.blog.model;
 
+import javax.annotation.Resource;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,12 +16,15 @@ public class Hashtag {
     @GeneratedValue
     private Long id;
     private String name;
-    @ManyToMany(mappedBy = "hashtag")
+    @ManyToMany
     private Collection<Post> posts;
 
-    public Hashtag(String name) {
+    public Hashtag(String name, Post...posts) {
+
         this.name = name;
+        this.posts = List.of(posts);
     }
+
 
     public Hashtag() {
 
@@ -35,6 +41,10 @@ public class Hashtag {
     public Collection<Post> getPosts() {
         return posts;
     }
+
+    public void addPost(Post inPost) {
+            this.posts.add(inPost);
+   }
 
     @Override
     public boolean equals(Object o) {

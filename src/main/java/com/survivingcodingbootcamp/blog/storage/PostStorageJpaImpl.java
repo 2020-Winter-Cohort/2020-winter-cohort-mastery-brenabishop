@@ -1,5 +1,6 @@
 package com.survivingcodingbootcamp.blog.storage;
 
+import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.storage.repository.PostRepository;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,9 @@ public class PostStorageJpaImpl implements PostStorage {
     @Override
     public void save(Post postToAdd) {
         postRepo.save(postToAdd);
+    }
+
+    public void addHashtag(Long id, Hashtag hashtag) {
+        retrievePostById(id).addHashtag(hashtag);;
     }
 }

@@ -27,6 +27,16 @@
                 <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut. 
                     Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
                 </p>
+                <a th:each="hashtag:${post.hashtag}" th:text="${hashtag.name} + ' '" th:href="'/hashtag/' + ${hashtag.id}"></a>
+            </section>
+            <br>
+            <section class="add-hashtag">
+                <form action="/updateHashtags" method="post">
+                    <label>Add hashtag(s)</label>
+                    <input type="text" id="name" name="name">
+                    <input type="hidden" th:value="${post.id}" name="postId" id="postId">
+                    <button type="submit" value="Add">Add</button>
+                </form>
             </section>
         </main>
     </div>

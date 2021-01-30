@@ -4,6 +4,9 @@ import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.storage.repository.HashtagRepository;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 @Service
 public class HashtagStorageJpaImpl implements  HashtagStorage{
     private HashtagRepository hashtagRepo;
@@ -19,7 +22,12 @@ public class HashtagStorageJpaImpl implements  HashtagStorage{
 
     @Override
     public Hashtag retrieveHashtagById(long id) {
-        return hashtagRepo.findById(id).get();
+        Optional<Hashtag> retrievedHashtagOptional = hashtagRepo.findById(id);
+        if(retrievedHashtagOptional.isPresent()) {
+            Hashtag foundHashtag = retrievedHashtagOptional.get();
+            return foundHashtag;
+        }
+        return null;
     }
 
     @Override

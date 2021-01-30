@@ -1,5 +1,6 @@
 package com.survivingcodingbootcamp.blog.storage;
 
+import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.model.Post;
 
 public interface PostStorage {
