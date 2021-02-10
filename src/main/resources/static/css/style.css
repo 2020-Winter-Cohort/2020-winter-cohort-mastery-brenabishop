@@ -42,3 +42,6 @@ a{
 a:hover{
     color: var(--light-highlight);
 }
+.post-hashtag{
+    text-decoration: none;
+}

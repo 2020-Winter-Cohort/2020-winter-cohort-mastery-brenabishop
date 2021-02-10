@@ -35,12 +35,12 @@
         <section class="add-hashtag">
             <form action="/topics/addedPost" method="POST">
                 <input type="hidden" id="topicID" th:value="${topic.id}" name="topicID">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title">
-                <label for="author">Your Name</label>
-                <input type="text" id="author" name="author">
-                <label for="content">Content</label>
-                <textarea id="content" name="content"></textarea>
+                <label for="title">Title</label><br>
+                <input type="text" id="title" name="title" ><br>
+                <label for="author">Your Name</label><br>
+                <input type="text" id="author" name="author" ><br>
+                <label for="content">Content</label><br>
+                <textarea id="content" name="content" ></textarea><br>
                 <!--<label for="hashtag">Hashtag(s)</label>
                 <input type="text" id="hashtag" name="hashtag">-->
                 <button type="submit" value="Add">Add post</button>
